@@ -34,3 +34,9 @@ if (!function_exists('is_local')) {
         return in_environment('local');
     }
 }
+
+if (!function_exists('log_db_queries')) {
+    function log_db_queries () {
+        return config('app.enable_query_log');
+    }
+}

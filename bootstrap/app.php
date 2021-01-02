@@ -39,6 +39,12 @@ if (is_local() || in_environment('staging')) {
     $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 }
 
+if (log_db_queries()) {
+    // uses terminate method, that's why singleton
+    $app->singleton(App\Http\Middleware\QueryLoggerMiddleware::class);
+    $app->middleware(App\Http\Middleware\QueryLoggerMiddleware::class);
+}
+
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
 ], function ($router) {
