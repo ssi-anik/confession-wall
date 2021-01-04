@@ -36,6 +36,7 @@ $app->register(App\Providers\ValidationServiceProvider::class);
 $app->register(Illuminate\Redis\RedisServiceProvider::class);
 $app->register(Fruitcake\Cors\CorsServiceProvider::class);
 $app->register(Anik\Form\FormRequestServiceProvider::class);
+$app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 
 if (is_local() || in_environment('staging')) {
     $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
