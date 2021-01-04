@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\TokenRefreshEvent;
 use App\Events\UserAccountCreateEvent;
 use App\Events\UserLoginEvent;
 use App\Http\Controllers\Controller;
@@ -80,5 +81,18 @@ class AuthController extends Controller
             'error' => false,
             'data'  => $this->prepareTokenData($token),
         ], 200);
+    }
+
+    public function refreshToken () {
+        $user = auth()->user();
+
+        $token = auth()->fromUser($user);
+        event(new TokenRefreshEvent($user));
+
+        // run `auth()->invalidate(true);` if you want to invalidate the token
+        return response()->json([
+            'error' => false,
+            'data'  => $this->prepareTokenData($token),
+        ]);
     }
 }
