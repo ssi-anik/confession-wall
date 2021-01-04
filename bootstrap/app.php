@@ -32,8 +32,10 @@ $app->middleware([
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 $app->register(App\Providers\EventServiceProvider::class);
+$app->register(App\Providers\ValidationServiceProvider::class);
 $app->register(Illuminate\Redis\RedisServiceProvider::class);
 $app->register(Fruitcake\Cors\CorsServiceProvider::class);
+$app->register(Anik\Form\FormRequestServiceProvider::class);
 
 if (is_local() || in_environment('staging')) {
     $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
