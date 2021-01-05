@@ -37,6 +37,10 @@ class SettingsController extends Controller
             }
         }
 
+        if ($request->has('message_from')) {
+            $changes['message_from'] = (int) $request->input('message_from');
+        }
+
         if (empty($changes)) {
             return response()->json([ 'error' => true, 'message' => 'Nothing to change.' ], 403);
         }
