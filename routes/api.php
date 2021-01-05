@@ -11,8 +11,9 @@ $router->group([ 'prefix' => 'auth' ], function ($router) {
     });
 });
 
-$router->group(['middleware' => ['auth']], function ($router) {
-    $router->group(['prefix' => 'me'], function ($router) {
+$router->group([ 'middleware' => [ 'auth' ] ], function ($router) {
+    $router->group([ 'prefix' => 'me' ], function ($router) {
+        $router->get('settings', 'SettingsController@getUserSettings');
         $router->patch('settings', 'SettingsController@updateSettings');
     });
 });

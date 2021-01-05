@@ -54,4 +54,18 @@ class SettingsController extends Controller
 
         return response()->json([ 'error' => false, 'message' => 'Profile has been updated successfully.' ], 202);
     }
+
+    public function getUserSettings () {
+        $user = auth()->user();
+
+        return response()->json([
+            'error' => false,
+            'data'  => [
+                'name'         => $user->name,
+                'email'        => $user->email,
+                'username'     => $user->username,
+                'message_from' => $user->message_from,
+            ],
+        ]);
+    }
 }
