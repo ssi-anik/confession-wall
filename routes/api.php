@@ -18,6 +18,4 @@ $router->group([ 'middleware' => [ 'auth' ] ], function ($router) {
     });
 });
 
-$router->get('cors', function () use ($router) {
-    return [ 'error' => false, 'message' => 'functioning okay!' ];
-});
+$router->get('user-info/{username}', 'ConfessionController@getUserInfo');

@@ -37,8 +37,8 @@ class SettingsController extends Controller
             }
         }
 
-        if ($request->has('message_from')) {
-            $changes['message_from'] = (int) $request->input('message_from');
+        if ($request->has('message_privacy')) {
+            $changes['message_privacy'] = (int) $request->input('message_privacy');
         }
 
         if (empty($changes)) {
@@ -61,10 +61,10 @@ class SettingsController extends Controller
         return response()->json([
             'error' => false,
             'data'  => [
-                'name'         => $user->name,
-                'email'        => $user->email,
-                'username'     => $user->username,
-                'message_from' => $user->message_from,
+                'name'            => $user->name,
+                'email'           => $user->email,
+                'username'        => $user->username,
+                'message_privacy' => $user->message_privacy,
             ],
         ]);
     }

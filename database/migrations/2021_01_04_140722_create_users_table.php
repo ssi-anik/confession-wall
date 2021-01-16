@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             // TODO: Implement mailing and verification
             // $table->dateTime('verified_at')->nullable();
             $table->unsignedTinyInteger('is_banned')->default(0);
-            $table->unsignedTinyInteger('message_from')->default(User::MSG_FROM_REGISTERED_USER);
+            $table->unsignedTinyInteger('message_privacy')->default(User::MSG_FROM_REGISTERED_USER);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -14,9 +14,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 {
     use Authenticatable, Authorizable, HasFactory;
     const MSG_FROM_NOBODY = 0;
-    const MSG_FROM_REGISTERED_USER = 1;
+    const MSG_FROM_PUBLIC = 1;
     const MSG_FROM_ANONYMOUS = 2;
-    const MSG_FROM_PUBLIC = 3;
+    const MSG_FROM_REGISTERED_USER = 3;
 
     protected $fillable = [
         'name',
@@ -41,28 +41,32 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return [];
     }
 
-    public function canReceiveFrom ($from) {
-        return $this->isReceivingMessage() && $this->message_from >= $from ? true : false;
+    public function isBanned () {
+        return (bool) $this->is_banned;
     }
 
     public function isReceivingMessage () {
-        return $this->message_from > self::MSG_FROM_NOBODY;
+        return !$this->isBanned() && $this->message_privacy > self::MSG_FROM_NOBODY;
     }
 
-    public function receiveFromTranslation () {
-        return $this->messageFromTranslation($this->message_from);
+    public function canReceiveWith ($privacy) {
+        return $this->isReceivingMessage() && $privacy >= $this->message_privacy ? true : false;
+    }
+
+    public function whyCannotReceiveTranslation () {
+        return $this->messageFromTranslation($this->message_privacy);
     }
 
     public function messageFromTranslation ($from) {
         switch ( $from ) {
             case self::MSG_FROM_NOBODY:
-                return 'is not receiving message from anyone.';
+                return $this->name . ' is not receiving message from anyone.';
             case self::MSG_FROM_ANONYMOUS:
-                return 'is not receiving message from anonymous user.';
+                return $this->name . ' is not receiving message from anonymous user.';
             case self::MSG_FROM_REGISTERED_USER:
-                return 'is not receiving message except registered user.';
+                return $this->name . ' is not receiving message except registered user.';
             case self::MSG_FROM_PUBLIC:
-                return 'is not receiving message from public';
+                return $this->name . ' is not receiving message from public';
         }
     }
 }
