@@ -60,13 +60,13 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function messageFromTranslation ($from) {
         switch ( $from ) {
             case self::MSG_FROM_NOBODY:
-                return $this->name . ' is not receiving message from anyone.';
+                return $this->username . ' is not receiving message from anyone.';
             case self::MSG_FROM_ANONYMOUS:
-                return $this->name . ' is not receiving message from anonymous user.';
+                return $this->username . ' is not receiving message from anonymous user.';
             case self::MSG_FROM_REGISTERED_USER:
-                return $this->name . ' is not receiving message except registered user.';
+                return $this->username . ' is not receiving message except real user.';
             case self::MSG_FROM_PUBLIC:
-                return $this->name . ' is not receiving message from public';
+                return $this->username . ' is not receiving message from public';
         }
     }
 }

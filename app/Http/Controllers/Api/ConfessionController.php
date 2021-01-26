@@ -3,13 +3,20 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Confession;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class ConfessionController extends Controller
 {
-    public function getUserInfo (Request $request, $username) {
+    public function postConfession (Request $request) {
+        $body = $request->input('body');
+        if (empty($body)) {
+            return response()->json([ 'error' => true, 'message' => 'Cannot post empty confession' ], 422);
+        }
+
         $requestingUser = auth()->user();
+        $username = $request->input('username');
 
         /** @var User|null $lookupUser */
         $lookupUser = User::where('username', $username)->first();
@@ -21,9 +28,6 @@ class ConfessionController extends Controller
             return response()->json([ 'error' => true, 'message' => 'You cannot post on your wall.' ], 403);
         }
 
-        $canPostOnWall = true;
-        $message = sprintf('Write a confession on %s\'s wall!', $lookupUser->name);
-
         if (is_null($requestingUser)) {
             $privacy = User::MSG_FROM_PUBLIC;
         } elseif ($request->has('as_anonymous')) {
@@ -33,16 +37,22 @@ class ConfessionController extends Controller
         }
 
         if (false === $lookupUser->canReceiveWith($privacy)) {
-            $canPostOnWall = false;
-            $message = $lookupUser->whyCannotReceiveTranslation();
+            return response()->json([
+                'error'   => true,
+                'message' => $lookupUser->whyCannotReceiveTranslation(),
+            ], 403);
         }
+
+        Confession::create([
+            'receiver_id'  => $lookupUser->id,
+            'body'         => $body,
+            'poster_id'    => $requestingUser->id ?? null,
+            'is_anonymous' => $request->input('as_anonymous') == 1 ? true : false,
+        ]);
 
         return response()->json([
             'error'   => false,
-            'message' => $message,
-            'data'    => [
-                'can_post_on_wall' => $canPostOnWall,
-            ],
-        ], 200); // why 200? cause requesting user has nothing to do with looking for user's permission
+            'message' => 'Successfully posted on ' . $username . '\'s wall.',
+        ], 200);
     }
 }

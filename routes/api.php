@@ -18,4 +18,4 @@ $router->group([ 'middleware' => [ 'auth' ] ], function ($router) {
     });
 });
 
-$router->get('user-info/{username}', 'ConfessionController@getUserInfo');
+$router->post('confession', 'ConfessionController@postConfession');
