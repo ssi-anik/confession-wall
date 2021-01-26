@@ -12,8 +12,10 @@
         "php": "^7.3|^8.0",
         "anik/form-request": "^3.3",
         "fruitcake/laravel-cors": "^2.0",
+        "illuminate/filesystem": "^8.25",
         "illuminate/redis": "^8.20",
         "laravel/lumen-framework": "^8.0",
+        "league/flysystem": "^1.1",
         "pda/pheanstalk": "^4.0",
         "ramsey/uuid": "^4.1",
         "tymon/jwt-auth": "^1.0"

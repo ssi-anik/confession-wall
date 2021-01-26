@@ -6,6 +6,9 @@ use App\Events\UserSettingsUpdateEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateSettingsRequest;
 use App\Models\User;
+use Illuminate\Filesystem\FilesystemServiceProvider;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class SettingsController extends Controller
 {
@@ -55,6 +58,27 @@ class SettingsController extends Controller
         return response()->json([ 'error' => false, 'message' => 'Profile has been updated successfully.' ], 202);
     }
 
+    public function updateProfilePicture (Request $request) {
+        $this->validate($request, [
+            'profile_picture'        => [ 'required_without:remove_profile_picture', 'image' ],
+            'remove_profile_picture' => [ 'required_without:profile_picture' ],
+        ]);
+
+        $profilePicture = null;
+        if ($request->hasFile('profile_picture')) {
+            $profilePicture = $request->file('profile_picture')->store('avatars');
+        }
+
+        $user = auth()->user();
+        $user->profile_picture = $profilePicture;
+        $user->save();
+
+        return response()->json([
+            'error'   => false,
+            'message' => sprintf('Successfully %s your profile picture.', $profilePicture ? 'saved' : 'removed'),
+        ]);
+    }
+
     public function getUserSettings () {
         $user = auth()->user();
 
@@ -64,6 +88,7 @@ class SettingsController extends Controller
                 'name'            => $user->name,
                 'email'           => $user->email,
                 'username'        => $user->username,
+                'profile_picture' => $user->profilePicture(),
                 'message_privacy' => $user->message_privacy,
             ],
         ]);

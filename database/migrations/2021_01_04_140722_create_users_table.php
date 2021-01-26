@@ -14,6 +14,7 @@ class CreateUsersTable extends Migration
             $table->string('username', 30)->index();
             $table->string('email', 80);
             $table->string('password', 72);
+            $table->string('profile_picture')->nullable();
             // TODO: Implement mailing and verification
             // $table->dateTime('verified_at')->nullable();
             $table->unsignedTinyInteger('is_banned')->default(0);

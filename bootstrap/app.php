@@ -19,6 +19,7 @@ $app->singleton(Illuminate\Contracts\Console\Kernel::class, App\Console\Kernel::
 $app->configure('app');
 $app->configure('auth');
 $app->configure('queue');
+$app->configure('filesystems');
 $app->configure('cors');
 
 $app->middleware([
@@ -37,6 +38,7 @@ $app->register(Illuminate\Redis\RedisServiceProvider::class);
 $app->register(Fruitcake\Cors\CorsServiceProvider::class);
 $app->register(Anik\Form\FormRequestServiceProvider::class);
 $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
+$app->register(Illuminate\Filesystem\FilesystemServiceProvider::class);
 
 if (is_local() || in_environment('staging')) {
     $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);

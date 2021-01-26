@@ -23,6 +23,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'username',
         'email',
         'password',
+        'profile_picture',
     ];
 
     protected $hidden = [
@@ -39,6 +40,14 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function getJWTCustomClaims () {
         return [];
+    }
+
+    public function profilePicture () {
+        if (isset($this->profile_picture)) {
+            return url($this->profile_picture);
+        }
+
+        return 'https://loremflickr.com/320/240';
     }
 
     public function isBanned () {
