@@ -55,4 +55,30 @@ class ConfessionController extends Controller
             'message' => 'Successfully posted on ' . $username . '\'s wall.',
         ], 200);
     }
+
+    public function myConfessions (Request $request) {
+        $user = auth()->user();
+
+        $results = Confession::with('poster')->where('receiver_id', $user->id)->latest()->paginate(10);
+
+        return response()->json([
+            'error' => false,
+            'data'  => [
+                'data' => [
+                    'items'      => $results->getCollection()->transform(function ($each) {
+                        return [
+                            'body'         => $each->body,
+                            'is_public'    => $each->poster ? false : true,
+                            'is_anonymous' => $each->poster && $each->is_anonymous,
+                            'poster'       => !$each->is_anonymous && $each->poster ? $each->poster->username : null,
+                            'posted_at'    => $each->created_at->toDateTimeString(),
+                        ];
+                    }),
+                    'pagination' => [
+                        'has_next' => $results->hasMorePages(),
+                    ],
+                ],
+            ],
+        ]);
+    }
 }

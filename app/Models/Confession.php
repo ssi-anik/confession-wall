@@ -17,7 +17,7 @@ class Confession extends Model
         'is_anonymous',
     ];
 
-    public function user () {
+    public function poster () {
         return $this->belongsTo(User::class, 'poster_id');
     }
 }
