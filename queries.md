@@ -31,9 +31,15 @@
 #   greet_with_optional_age(name: $name, age: $age)
 # }
 
-# query greet_with_alias ($name: String!) {
-#   alias_name: greet(name: $name)
+# query greet_as_default {
+#   alias_name: greet_with_default_value
 # }
+
+# Don't pass variable, otherwise the default value will be overwritten
+# query ($name : String = "Default value on client side") {
+#   greet_with_default_value(name: $name)
+# }
+
 ```
 
 # VARIABLES
