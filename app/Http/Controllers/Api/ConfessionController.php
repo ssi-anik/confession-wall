@@ -64,21 +64,35 @@ class ConfessionController extends Controller
         return response()->json([
             'error' => false,
             'data'  => [
-                'data' => [
-                    'items'      => $results->getCollection()->transform(function ($each) {
-                        return [
-                            'body'         => $each->body,
-                            'is_public'    => $each->poster ? false : true,
-                            'is_anonymous' => $each->poster && $each->is_anonymous,
-                            'poster'       => !$each->is_anonymous && $each->poster ? $each->poster->username : null,
-                            'posted_at'    => $each->created_at->toDateTimeString(),
-                        ];
-                    }),
-                    'pagination' => [
-                        'has_next' => $results->hasMorePages(),
-                    ],
+                'items'      => $results->getCollection()->transform(function ($row) {
+                    return [
+                        'id'           => $row->id,
+                        'body'         => $row->body,
+                        'is_public'    => $row->poster ? false : true,
+                        'is_anonymous' => $row->poster && $row->is_anonymous,
+                        'poster'       => !$row->is_anonymous && $row->poster ? $row->poster->username : null,
+                        'posted_at'    => $row->created_at->toDateTimeString(),
+                    ];
+                }),
+                'pagination' => [
+                    'has_next' => $results->hasMorePages(),
                 ],
             ],
         ]);
+    }
+
+    public function deleteConfession ($confessionId) {
+        $confession = Confession::where('receiver_id', auth()->user()->id)->find($confessionId);
+
+        if (!$confession) {
+            return response()->json([
+                'error'   => true,
+                'message' => 'The confession either does not exist or belong to you',
+            ], 403);
+        }
+
+        $confession->delete();
+
+        return response()->json([ 'error' => false, 'message' => 'The confession is successfully deleted.' ], 202);
     }
 }

@@ -17,6 +17,7 @@ $router->group([ 'middleware' => [ 'auth' ] ], function ($router) {
         $router->patch('settings', 'SettingsController@updateSettings');
         $router->post('avatar', 'SettingsController@updateProfilePicture');
         $router->get('confession', 'ConfessionController@myConfessions');
+        $router->delete('confession/{confessionId}', 'ConfessionController@deleteConfession');
     });
 });
 
