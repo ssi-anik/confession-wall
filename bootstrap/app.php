@@ -21,6 +21,8 @@ $app->configure('auth');
 $app->configure('queue');
 $app->configure('filesystems');
 $app->configure('cors');
+$app->configure('lighthouse');
+$app->configure('graphql-playground');
 
 $app->middleware([
     Fruitcake\Cors\HandleCors::class,
@@ -39,6 +41,10 @@ $app->register(Fruitcake\Cors\CorsServiceProvider::class);
 $app->register(Anik\Form\FormRequestServiceProvider::class);
 $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 $app->register(Illuminate\Filesystem\FilesystemServiceProvider::class);
+
+$app->register(Nuwave\Lighthouse\LighthouseServiceProvider::class);
+$app->register(Nuwave\Lighthouse\Pagination\PaginationServiceProvider::class);
+$app->register(MLL\GraphQLPlayground\GraphQLPlaygroundServiceProvider::class);
 
 if (is_local() || in_environment('staging')) {
     $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
