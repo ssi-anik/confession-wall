@@ -43,7 +43,10 @@ $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 $app->register(Illuminate\Filesystem\FilesystemServiceProvider::class);
 
 $app->register(Nuwave\Lighthouse\LighthouseServiceProvider::class);
-$app->register(Nuwave\Lighthouse\Pagination\PaginationServiceProvider::class);
+/**
+ * Enable if you need @paginate directory in your schema.
+ */
+// $app->register(Nuwave\Lighthouse\Pagination\PaginationServiceProvider::class);
 $app->register(MLL\GraphQLPlayground\GraphQLPlaygroundServiceProvider::class);
 
 if (is_local() || in_environment('staging')) {
