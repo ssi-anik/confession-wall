@@ -16,6 +16,28 @@ type Query {
     greet_with_default_value (name: String = "Default value on server side"): String! @field(resolver: "App\\GraphQL\\Queries\\Greet")
 }
 
+type Mutation {
+    login(input: UserLogin @spread): AuthPayload! @field(resolver: "App\\GraphQL\\Mutations\\UserLogin")
+}
+
+input UserLogin {
+    username: String!
+    password: String!
+}
+
+type LoginPayload {
+    access_token: String!
+    type: String!
+    expires_in: Int!
+}
+
+type Error {
+    message: String!
+    reasons: [String!]
+}
+
+union AuthPayload = LoginPayload | Error
+
 #type User {
 #    id: ID!
 #    name: String!

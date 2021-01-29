@@ -41,6 +41,7 @@ $app->register(Fruitcake\Cors\CorsServiceProvider::class);
 $app->register(Anik\Form\FormRequestServiceProvider::class);
 $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 $app->register(Illuminate\Filesystem\FilesystemServiceProvider::class);
+$app->register(App\Providers\GraphQLServiceProvider::class);
 
 $app->register(Nuwave\Lighthouse\LighthouseServiceProvider::class);
 /**
