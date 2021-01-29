@@ -2,7 +2,7 @@
 
 ### Named or anonymous/shorthand queries
 
-```graphql
+```graphql endpoint doc
 query hello_query {
   hello
 }
@@ -53,7 +53,7 @@ query ($name : String = "Default value on client side") {
 ---
 
 ### User login
-```graphql
+```graphql endpoint doc
 mutation ($input: UserLogin) {
   user_login: login (input: $input) {
     __typename
@@ -67,9 +67,7 @@ mutation ($input: UserLogin) {
     }
   }
 }
-
 ```
-
 
 ### VARIABLES
 
