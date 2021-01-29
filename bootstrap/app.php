@@ -44,6 +44,7 @@ $app->register(Illuminate\Filesystem\FilesystemServiceProvider::class);
 $app->register(App\Providers\GraphQLServiceProvider::class);
 
 $app->register(Nuwave\Lighthouse\LighthouseServiceProvider::class);
+$app->register(Nuwave\Lighthouse\Validation\ValidationServiceProvider::class);
 /**
  * Enable if you need @paginate directory in your schema.
  */

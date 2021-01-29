@@ -54,7 +54,7 @@ query ($name : String = "Default value on client side") {
 
 ### User login
 ```graphql endpoint doc
-mutation ($input: UserLogin) {
+mutation ($input: LoginInput) {
   user_login: login (input: $input) {
     __typename
     ... on LoginPayload {
@@ -77,6 +77,34 @@ mutation ($input: UserLogin) {
   "input": {
     "username": "confession-wall",
     "password": "12345"
+  }
+}
+```
+
+---
+
+### Create user account
+```graphql endpoint doc
+mutation ($input: CreateAccountInput) {
+  createAccount(input: $input) {
+    __typename
+    ... on Message {
+      message
+    }
+  }
+}
+```
+
+### VARIABLES
+
+```json
+{
+  "input": {
+    "name": "new confession wall name",
+    "username": "confession-wall-1",
+    "password": "12345",
+    "password_confirmation": "12345",
+    "email": "confession.wall+1@confession-wall.com"
   }
 }
 ```
