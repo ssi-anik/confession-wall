@@ -227,12 +227,13 @@ mutation avatar($input: AvatarInput!) {
 }
 ```
 
-For uploading content, it should send request with `multipart/form-data` for `Content-Type` header. And, whenever sending a `multipart/form-data` it must contain `map` key in the post request. And `operations`
+For uploading content, it should send request with `multipart/form-data` for `Content-Type` header. And, whenever sending a `multipart/form-data` it must contain `map` key in the post request.
 
 For better understanding go through:
 
 - `vendor/laragraph/utils/src/RequestParser.php#L48-L73`
 - `vendor/laragraph/utils/src/RequestParser.php#L82-L117`
+
 
 - Upload profile picture
 ```bash
