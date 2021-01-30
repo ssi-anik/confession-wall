@@ -14,12 +14,19 @@ type LoginPayload {
     expires_in: Int!
 }
 
+enum MessagePrivacy {
+    MSG_FROM_NOBODY @enum(value: 0)
+    MSG_FROM_PUBLIC @enum(value: 1)
+    MSG_FROM_ANONYMOUS @enum(value: 2)
+    MSG_FROM_REGISTERED_USER @enum(value: 3)
+}
+
 type UserSetting {
     name: String!
     email: String!
     username: String!
     profile_picture: String!
-    message_privacy: Int!
+    message_privacy: MessagePrivacy!
 }
 
 type Success implements Message {
