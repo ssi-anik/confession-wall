@@ -109,3 +109,19 @@ mutation ($input: CreateAccountInput!) {
   }
 }
 ```
+
+### Refresh token
+```graphql endpoint doc
+mutation {
+  refreshToken {
+    access_token
+  }
+}
+```
+
+### Header
+```json
+{
+  "Authorization": "Bearer TOKEN_FROM_LOGIN"
+}
+```
