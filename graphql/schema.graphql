@@ -1,11 +1,4 @@
 type Query {
-    hello: String!
-    custom_resolver: String! @field(resolver: "App\\GraphQL\\Queries\\HelloQuery")
-    custom_resolver_with_method: String! @field(resolver: "App\\GraphQL\\Queries\\HelloQuery@methodNameHere")
-    greet (name: String!): String! @field(resolver: "App\\GraphQL\\Queries\\Greet")
-    greet_with_optional_age (name: String!, age: Int): String @field(resolver: "App\\GraphQL\\Queries\\GreetWithAge")
-    greet_with_default_value (name: String = "Default value on server side"): String! @field(resolver: "App\\GraphQL\\Queries\\Greet")
-
     userSetting: UserSetting! @guard @field(resolver: "App\\GraphQL\\Queries\\UserSettings")
     myConfessions(page: Int = 1): ConfessionList! @field(resolver: "App\\GraphQL\\Queries\\MyConfession") @guard(with: ["api"])
 }
@@ -25,3 +18,4 @@ type Mutation {
 
 #import inputs.graphql
 #import types.graphql
+#import hands_on.graphql
