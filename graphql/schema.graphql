@@ -17,6 +17,8 @@ type Mutation {
     updateSetting(input: UserSettingInput! @spread): Message! @field(resolver: "App\\GraphQL\\Mutations\\UpdateSetting") @guard(with: ["api"])
 
     avatar(input: AvatarInput! @spread): Message! @field(resolver: "App\\GraphQL\\Mutations\\AvatarUpdate") @guard(with: ["api"])
+
+    deleteConfession(id: ID!): Message! @field(resolver: "App\\GraphQL\\Mutations\\DeleteConfession") @guard(with: ["api"])
 }
 
 #import inputs.graphql

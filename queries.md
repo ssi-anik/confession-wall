@@ -253,3 +253,27 @@ curl 'http://{{HOST}}/graphql' \
 ```
 
 ---
+
+### Delete confession
+
+```graphql endpoint doc
+mutation {
+  deleteConfession(id: 10) {
+    __typename
+    ... on Message {
+      message
+    }
+    ... on Success {
+      info
+    }
+  }
+}
+```
+
+### Header
+
+```json
+{
+  "Authorization": "Bearer TOKEN_FROM_LOGIN"
+}
+```

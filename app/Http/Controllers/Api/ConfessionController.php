@@ -87,7 +87,7 @@ class ConfessionController extends Controller
         if (!$confession) {
             return response()->json([
                 'error'   => true,
-                'message' => 'The confession either does not exist or belong to you',
+                'message' => 'The confession either does not exist or belongs to you.',
             ], 403);
         }
 
