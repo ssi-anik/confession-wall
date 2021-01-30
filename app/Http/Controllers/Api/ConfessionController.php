@@ -75,6 +75,7 @@ class ConfessionController extends Controller
                     ];
                 }),
                 'pagination' => [
+                    'has_prev' => $results->previousPageUrl() ? true : false,
                     'has_next' => $results->hasMorePages(),
                 ],
             ],

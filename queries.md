@@ -294,6 +294,7 @@ mutation ($input: PostConfessionInput!) {
 ```
 
 ### VARIABLES
+
 ```json
 {
   "input": {
@@ -305,6 +306,38 @@ mutation ($input: PostConfessionInput!) {
 ```
 
 ### Header
+
+```json
+{
+  "Authorization": "Bearer TOKEN_FROM_LOGIN"
+}
+```
+
+---
+
+### Get Confessions
+
+```graphql endpoint doc
+{
+  myConfessions(page: 1) {
+    pagination {
+      has_next
+      has_prev
+    }
+    items {
+      id
+      body
+      is_public
+      is_anonymous
+      poster
+      posted_at
+    }
+  }
+}
+```
+
+### Headers
+
 ```json
 {
   "Authorization": "Bearer TOKEN_FROM_LOGIN"

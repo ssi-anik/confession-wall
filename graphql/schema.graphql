@@ -7,6 +7,7 @@ type Query {
     greet_with_default_value (name: String = "Default value on server side"): String! @field(resolver: "App\\GraphQL\\Queries\\Greet")
 
     userSetting: UserSetting! @guard @field(resolver: "App\\GraphQL\\Queries\\UserSettings")
+    myConfessions(page: Int = 1): ConfessionList! @field(resolver: "App\\GraphQL\\Queries\\MyConfession") @guard(with: ["api"])
 }
 
 type Mutation {

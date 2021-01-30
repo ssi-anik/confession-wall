@@ -41,5 +41,24 @@ type Error implements Message{
     reasons: [String!]!
 }
 
+type Confession {
+    id: ID!
+    body: String!
+    is_public: Boolean!
+    is_anonymous: Boolean!
+    poster: String
+    posted_at: DateTime!
+}
+
+type SimplePagination {
+    has_next: Boolean!
+    has_prev: Boolean!
+}
+
+type ConfessionList {
+    items: [Confession!]!
+    pagination: SimplePagination!
+}
+
 union AuthPayload = LoginPayload | Error
 union RegistrationPayload = LoginPayload | Error
