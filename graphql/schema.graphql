@@ -14,8 +14,8 @@ type Query {
 }
 
 type Mutation {
-    login(input: LoginInput @spread): AuthPayload! @field(resolver: "App\\GraphQL\\Mutations\\UserLogin")
-    createAccount(input: CreateAccountInput @spread): Message @field(resolver: "App\\GraphQL\\Mutations\\CreateAccount")
+    login(input: LoginInput! @spread): AuthPayload! @field(resolver: "App\\GraphQL\\Mutations\\UserLogin")
+    createAccount(input: CreateAccountInput! @spread): Message! @field(resolver: "App\\GraphQL\\Mutations\\CreateAccount")
 }
 
 input LoginInput {
