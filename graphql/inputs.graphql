@@ -10,3 +10,12 @@ input CreateAccountInput {
     password: String! @rules(apply: ["min:5", "confirmed"])
     password_confirmation: String!
 }
+
+input UserSettingInput {
+    name: String @rules(apply: [ "min:3", "max:50" ])
+    email: String @rules(apply: ["max:80", "email"])
+    message_privacy: MessagePrivacy
+    current_password: String @rules(apply: ["required_with:new_password"])
+    new_password: String @rules(apply: ["required_with:current_password", "min:5", "confirmed"])
+    new_password_confirmation: String
+}

@@ -26,7 +26,7 @@ class SettingsController extends Controller
         }
 
         if ($name = trim($request->input('name'))) {
-            $changes['name'] = trim($request->input('name'));
+            $changes['name'] = $name;
         }
 
         if ($email = trim($request->get('email'))) {
