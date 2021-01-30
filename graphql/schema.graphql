@@ -18,6 +18,7 @@ type Mutation {
 
     avatar(input: AvatarInput! @spread): Message! @field(resolver: "App\\GraphQL\\Mutations\\AvatarUpdate") @guard(with: ["api"])
 
+    postConfessoin(input: PostConfessionInput! @spread): Message! @field(resolver: "App\\GraphQL\\Mutations\\PostConfession")
     deleteConfession(id: ID!): Message! @field(resolver: "App\\GraphQL\\Mutations\\DeleteConfession") @guard(with: ["api"])
 }
 

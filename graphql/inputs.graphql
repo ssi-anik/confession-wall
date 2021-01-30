@@ -24,3 +24,9 @@ input AvatarInput {
     profile_picture: Upload @rules(apply: ["required_without:input.remove_profile_picture", "image"])
     remove_profile_picture: Boolean @rules(apply: ["required_without:input.profile_picture"])
 }
+
+input PostConfessionInput {
+    as_anonymous: Boolean!
+    body: String! @rules(apply: ["min:5", "max:1000"])
+    username: String!
+}

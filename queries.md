@@ -277,3 +277,36 @@ mutation {
   "Authorization": "Bearer TOKEN_FROM_LOGIN"
 }
 ```
+
+---
+
+### Post confession to user wall
+
+```graphql endpoint doc
+mutation ($input: PostConfessionInput!) {
+  postConfessoin (input: $input) {
+    __typename
+    ... on Message {
+      message
+    }
+  }
+}
+```
+
+### VARIABLES
+```json
+{
+  "input": {
+    "as_anonymous": true,
+    "body": "this is confession text",
+    "username": "confession-wall"
+  }
+}
+```
+
+### Header
+```json
+{
+  "Authorization": "Bearer TOKEN_FROM_LOGIN"
+}
+```
