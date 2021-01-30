@@ -39,10 +39,10 @@ query greet_as_default {
 query ($name : String = "Default value on client side") {
   greet_with_default_value(name: $name)
 }
-
 ```
 
 ### VARIABLES
+
 ```json 
 {
   "name": "Syed Sirajul Islam Anik",
@@ -53,6 +53,7 @@ query ($name : String = "Default value on client side") {
 ---
 
 ### User login
+
 ```graphql endpoint doc
 mutation ($input: LoginInput!) {
   login (input: $input) {
@@ -85,6 +86,7 @@ mutation ($input: LoginInput!) {
 ---
 
 ### Create user account
+
 ```graphql endpoint doc
 mutation ($input: CreateAccountInput!) {
   createAccount(input: $input) {
@@ -109,9 +111,11 @@ mutation ($input: CreateAccountInput!) {
   }
 }
 ```
+
 ---
 
 ### Refresh token
+
 ```graphql endpoint doc
 mutation {
   refreshToken {
@@ -121,14 +125,17 @@ mutation {
 ```
 
 ### Header
+
 ```json
 {
   "Authorization": "Bearer TOKEN_FROM_LOGIN"
 }
 ```
+
 ---
 
 ### User Setting
+
 ```graphql endpoint doc
 {
   userSetting {
@@ -142,6 +149,7 @@ mutation {
 ```
 
 ### Header
+
 ```json
 {
   "Authorization": "Bearer TOKEN_FROM_LOGIN"
@@ -151,6 +159,7 @@ mutation {
 ---
 
 ### Change user setting
+
 ```graphql endpoint doc
 mutation ($input: UserSettingInput!) {
   updateSetting (input: $input) {
@@ -163,6 +172,7 @@ mutation ($input: UserSettingInput!) {
 ```
 
 ### VARIABLES
+
 ```json
 {
   "input": {
@@ -176,10 +186,69 @@ mutation ($input: UserSettingInput!) {
 ```
 
 ### Header
+
 ```json
 {
   "Authorization": "Bearer TOKEN_FROM_LOGIN"
 }
+```
+
+---
+
+### Update/Remove profile picture/avatar
+
+- Remove profile picture
+
+```graphql endpoint doc
+mutation avatar($input: AvatarInput!) {
+  avatar (input: $input) {
+    __typename
+    ... on Message {
+      message
+    }
+  }
+}
+```
+### Variable
+
+```json
+{
+  "input": {
+    "remove_profile_picture": true
+  }
+}
+```
+
+### Header
+
+```json
+{
+  "Authorization": "Bearer TOKEN_FROM_LOGIN"
+}
+```
+
+For uploading content, it should send request with `multipart/form-data` for `Content-Type` header. And, whenever sending a `multipart/form-data` it must contain `map` key in the post request. And `operations`
+
+For better understanding go through:
+
+- `vendor/laragraph/utils/src/RequestParser.php#L48-L73`
+- `vendor/laragraph/utils/src/RequestParser.php#L82-L117`
+
+- Upload profile picture
+```bash
+curl 'http://{{HOST}}/graphql' \
+  -H 'Authorization: Bearer TOKEN_FROM_LOGIN' \
+  -F operations='{ "query": "mutation avatar($input: AvatarInput!) { avatar(input: $input) {__typename ... on Message { message } } }", "variables": {"input":{"profile_picture": null}} }' \
+  -F map='{ "0": ["variables.input.profile_picture"] }' \
+  -F 0=@/directory/to-your/image.png
+```
+
+- Remove Profile picture with `multipart/form-data` **`map` key should be present**
+```bash
+curl 'http://{{HOST}}/graphql' \
+  -H 'Authorization: Bearer TOKEN_FROM_LOGIN' \
+  -F operations='{ "query": "mutation avatar($input: AvatarInput!) { avatar(input: $input) {__typename ... on Message { message } } }", "variables": {"input":{"remove_profile_picture":true}} }' \
+  -F map='{}'
 ```
 
 ---
