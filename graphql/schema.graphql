@@ -1,9 +1,3 @@
-"A date string with format `Y-m-d`, e.g. `2011-05-23`."
-scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
-
-"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
-scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
-
 type Query {
     hello: String!
     custom_resolver: String! @field(resolver: "App\\GraphQL\\Queries\\HelloQuery")
@@ -21,46 +15,5 @@ type Mutation {
     refreshToken: LoginPayload! @field(resolver: "App\\GraphQL\\Mutations\\RefreshToken") @guard(with: ["api"])
 }
 
-input LoginInput {
-    username: String!
-    password: String!
-}
-
-input CreateAccountInput {
-    name: String! @rules(apply: ["min:3", "max:50"])
-    username: String! @rules(apply: ["max:30", "username", "unique:users,username"])
-    email: String! @rules(apply: ["max:80", "email", "unique:users,email"])
-    password: String! @rules(apply: ["min:5", "confirmed"])
-    password_confirmation: String!
-}
-
-type LoginPayload {
-    access_token: String!
-    type: String!
-    expires_in: Int!
-}
-
-type UserSetting {
-    name: String!
-    email: String!
-    username: String!
-    profile_picture: String!
-    message_privacy: Int!
-}
-
-interface Message {
-    message: String!
-}
-
-type Success implements Message {
-    message: String!
-    info: [String!]!
-}
-
-type Error implements Message{
-    message: String!
-    reasons: [String!]!
-}
-
-union AuthPayload = LoginPayload | Error
-union RegistrationPayload = LoginPayload | Error
+#import inputs.graphql
+#import types.graphql

@@ -1,0 +1,36 @@
+"A date string with format `Y-m-d`, e.g. `2011-05-23`."
+scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
+
+"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+interface Message {
+    message: String!
+}
+
+type LoginPayload {
+    access_token: String!
+    type: String!
+    expires_in: Int!
+}
+
+type UserSetting {
+    name: String!
+    email: String!
+    username: String!
+    profile_picture: String!
+    message_privacy: Int!
+}
+
+type Success implements Message {
+    message: String!
+    info: [String!]!
+}
+
+type Error implements Message{
+    message: String!
+    reasons: [String!]!
+}
+
+union AuthPayload = LoginPayload | Error
+union RegistrationPayload = LoginPayload | Error

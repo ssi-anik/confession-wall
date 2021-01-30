@@ -1,0 +1,12 @@
+input LoginInput {
+    username: String!
+    password: String!
+}
+
+input CreateAccountInput {
+    name: String! @rules(apply: ["min:3", "max:50"])
+    username: String! @rules(apply: ["max:30", "username", "unique:users,username"])
+    email: String! @rules(apply: ["max:80", "email", "unique:users,email"])
+    password: String! @rules(apply: ["min:5", "confirmed"])
+    password_confirmation: String!
+}
