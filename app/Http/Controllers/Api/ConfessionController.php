@@ -68,8 +68,8 @@ class ConfessionController extends Controller
                     return [
                         'id'           => $row->id,
                         'body'         => $row->body,
-                        'is_public'    => $row->poster ? false : true,
-                        'is_anonymous' => $row->poster && $row->is_anonymous,
+                        'is_public'    => $row->poster_id ? false : true,
+                        'is_anonymous' => $row->poster_id && $row->is_anonymous,
                         'poster'       => !$row->is_anonymous && $row->poster ? $row->poster->username : null,
                         'posted_at'    => $row->created_at->toDateTimeString(),
                     ];
