@@ -109,6 +109,7 @@ mutation ($input: CreateAccountInput!) {
   }
 }
 ```
+---
 
 ### Refresh token
 ```graphql endpoint doc
@@ -125,3 +126,26 @@ mutation {
   "Authorization": "Bearer TOKEN_FROM_LOGIN"
 }
 ```
+---
+
+### User Setting
+```graphql endpoint doc
+{
+  userSetting {
+    name
+    email
+    username
+    profile_picture
+    message_privacy
+  }
+}
+```
+
+### Header
+```json
+{
+  "Authorization": "Bearer TOKEN_FROM_LOGIN"
+}
+```
+
+---

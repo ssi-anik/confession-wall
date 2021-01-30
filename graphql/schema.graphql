@@ -11,6 +11,8 @@ type Query {
     greet (name: String!): String! @field(resolver: "App\\GraphQL\\Queries\\Greet")
     greet_with_optional_age (name: String!, age: Int): String @field(resolver: "App\\GraphQL\\Queries\\GreetWithAge")
     greet_with_default_value (name: String = "Default value on server side"): String! @field(resolver: "App\\GraphQL\\Queries\\Greet")
+
+    userSetting: UserSetting! @guard @field(resolver: "App\\GraphQL\\Queries\\UserSettings")
 }
 
 type Mutation {
@@ -36,6 +38,14 @@ type LoginPayload {
     access_token: String!
     type: String!
     expires_in: Int!
+}
+
+type UserSetting {
+    name: String!
+    email: String!
+    username: String!
+    profile_picture: String!
+    message_privacy: Int!
 }
 
 interface Message {
