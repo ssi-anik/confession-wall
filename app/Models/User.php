@@ -42,6 +42,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return [];
     }
 
+    public function confessions () {
+        return $this->hasMany(Confession::class, 'receiver_id');
+    }
+
     public function profilePicture () {
         if (isset($this->profile_picture)) {
             return url($this->profile_picture);

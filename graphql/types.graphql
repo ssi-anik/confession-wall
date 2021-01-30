@@ -48,6 +48,20 @@ type Confession {
     is_anonymous: Boolean!
     poster: String
     posted_at: DateTime!
+
+    receiver: User @belongsTo(relation: "receiver")
+}
+
+type User {
+    id: ID!
+    name: String!
+    username: String!
+    email: String!
+    profile_picture: String!
+    is_banned: Boolean!
+    message_privacy: MessagePrivacy!
+
+    confessions: [Confession!]! @hasMany
 }
 
 type SimplePagination {

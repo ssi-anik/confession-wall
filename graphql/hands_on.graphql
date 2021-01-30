@@ -5,4 +5,7 @@ extend type Query {
     greet (name: String!): String! @field(resolver: "App\\GraphQL\\Queries\\Greet")
     greet_with_optional_age (name: String!, age: Int): String @field(resolver: "App\\GraphQL\\Queries\\GreetWithAge")
     greet_with_default_value (name: String = "Default value on server side"): String! @field(resolver: "App\\GraphQL\\Queries\\Greet")
+
+    confession(id: ID!): Confession! @field(resolver: "App\\GraphQL\\Queries\\SpecificConfession")
+    confessionList: [Confession!]! @field(resolver: "App\\GraphQL\\Queries\\ConfessionList")
 }
