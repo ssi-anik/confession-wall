@@ -149,3 +149,37 @@ mutation {
 ```
 
 ---
+
+### Change user setting
+```graphql endpoint doc
+mutation ($input: UserSettingInput!) {
+  updateSetting (input: $input) {
+    __typename
+    ... on Message {
+      message
+    }
+  }
+}
+```
+
+### VARIABLES
+```json
+{
+  "input": {
+    "current_password": "12345",
+    "new_password": "12345",
+    "new_password_confirmation": "12345",
+    "message_privacy": "MSG_FROM_ANONYMOUS",
+    "email": "new.email@mailer.com"
+  }
+}
+```
+
+### Header
+```json
+{
+  "Authorization": "Bearer TOKEN_FROM_LOGIN"
+}
+```
+
+---
