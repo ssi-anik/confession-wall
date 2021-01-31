@@ -29,6 +29,10 @@ class Confession extends Model
         return $this->belongsTo(User::class, 'receiver_id');
     }
 
+    public function getPostedAtAttribute () {
+        return $this->created_at->toDateTimeString();
+    }
+
     public function getIsPublicAttribute () {
         return $this->poster_id ? false : true;
     }
