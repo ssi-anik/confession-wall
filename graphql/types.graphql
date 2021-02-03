@@ -74,5 +74,11 @@ type ConfessionList {
     pagination: SimplePagination!
 }
 
+type CustomType {
+    id: ID!
+    name: String!
+    internal_argument(text: String): String! @field(resolver: "App\\GraphQL\\Queries\\InternalArgumentResolver")
+}
+
 union AuthPayload = LoginPayload | Error
 union RegistrationPayload = LoginPayload | Error

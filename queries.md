@@ -343,3 +343,41 @@ mutation ($input: PostConfessionInput!) {
   "Authorization": "Bearer TOKEN_FROM_LOGIN"
 }
 ```
+
+---
+
+### Field level argument
+```graphql endpoint doc
+query {
+  internalArgument (name: "Anika") {
+    id
+    name
+    # internal_argument(text: "another text")
+    internal_argument
+  }
+}
+```
+
+```graphql endpoint doc
+query ($name: String!, $text: String) {
+  with_arg: internalArgument (name: $name) {
+    id
+    name
+    internal_argument(text: $text)
+  }
+  
+  without_arg: internalArgument (name: $name) {
+    id
+    name
+    internal_argument
+  }
+}
+```
+
+### VARIABLES
+```json
+{
+  "name": "Anik",
+  "text": "Another text"
+}
+```

@@ -8,4 +8,6 @@ extend type Query {
 
     confession(id: ID!): Confession! @field(resolver: "App\\GraphQL\\Queries\\SpecificConfession")
     confessionList: [Confession!]! @field(resolver: "App\\GraphQL\\Queries\\ConfessionList")
+
+    internalArgument(name: String!): CustomType! @field(resolver: "App\\GraphQL\\Queries\\InternalArgument")
 }
