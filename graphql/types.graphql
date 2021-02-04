@@ -62,6 +62,12 @@ type User {
     message_privacy: MessagePrivacy!
 
     confessions: [Confession!]! @hasMany
+
+    # All the related data are listed above
+    # Added for the subscription check from the other repository.
+    # Don't think of it too much.
+    has_arg: Boolean
+    pushed_by_subs_resolver: String
 }
 
 type SimplePagination {

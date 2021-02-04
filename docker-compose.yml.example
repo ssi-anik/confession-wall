@@ -64,3 +64,13 @@ services:
             - 9000:80
         links:
             - beanstalkd
+
+    echo:
+        image: oanhnn/laravel-echo-server
+        volumes:
+            - ./laravel-echo-server.json:/app/laravel-echo-server.json
+        ports:
+            - 9999:6001
+        links:
+            - redis
+            - nginx

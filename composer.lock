@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0b2916e1cd0bc6a13c838475a950e818",
+    "content-hash": "1a4ae4f8e514a1c2085a4b44fa28d7d0",
     "packages": [
         {
             "name": "anik/form-request",
@@ -718,16 +718,16 @@
         },
         {
             "name": "illuminate/broadcasting",
-            "version": "v8.20.1",
+            "version": "v8.26.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/broadcasting.git",
-                "reference": "869824ad09ba8f0a8a6d97ee083950d9bf8c710d"
+                "reference": "0b02b06cb146c4fceceedb226bde37866fd5550e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/broadcasting/zipball/869824ad09ba8f0a8a6d97ee083950d9bf8c710d",
-                "reference": "869824ad09ba8f0a8a6d97ee083950d9bf8c710d",
+                "url": "https://api.github.com/repos/illuminate/broadcasting/zipball/0b02b06cb146c4fceceedb226bde37866fd5550e",
+                "reference": "0b02b06cb146c4fceceedb226bde37866fd5550e",
                 "shasum": ""
             },
             "require": {
@@ -770,7 +770,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2020-12-09T18:07:50+00:00"
+            "time": "2021-02-02T13:42:30+00:00"
         },
         {
             "name": "illuminate/bus",

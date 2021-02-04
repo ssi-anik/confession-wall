@@ -1,0 +1,32 @@
+{
+    "apiOriginAllow": {},
+    "authEndpoint": "/graphql/subscriptions/auth",
+    "authHost": "http://nginx:80",
+    "clients": [],
+    "database": "redis",
+    "databaseConfig": {
+        "redis": {
+            "host": "redis",
+            "port": "6379",
+
+            "keyPrefix": "confession",
+            "options": {
+                "db": "0"
+            }
+        },
+        "sqlite": {
+            "databasePath": "/database/laravel-echo-server.sqlite"
+        },
+        "publishPresence": true
+    },
+    "devMode": true,
+    "host": null,
+    "port": 6001,
+    "protocol": "http",
+    "sslCertPath": "",
+    "sslKeyPath": "",
+    "sslCertChainPath": "",
+    "sslPassphrase": "",
+    "socketio": {},
+    "subscribers": {"http": true, "redis": true}
+}

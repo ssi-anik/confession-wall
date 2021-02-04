@@ -18,7 +18,9 @@ $app->singleton(Illuminate\Contracts\Console\Kernel::class, App\Console\Kernel::
 
 $app->configure('app');
 $app->configure('auth');
+$app->configure('database');
 $app->configure('queue');
+$app->configure('broadcasting');
 $app->configure('filesystems');
 $app->configure('cors');
 $app->configure('lighthouse');
@@ -41,6 +43,7 @@ $app->register(Fruitcake\Cors\CorsServiceProvider::class);
 $app->register(Anik\Form\FormRequestServiceProvider::class);
 $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 $app->register(Illuminate\Filesystem\FilesystemServiceProvider::class);
+$app->register(Illuminate\Broadcasting\BroadcastServiceProvider::class);
 $app->register(App\Providers\GraphQLServiceProvider::class);
 
 $app->register(Nuwave\Lighthouse\LighthouseServiceProvider::class);
@@ -50,7 +53,7 @@ $app->register(Nuwave\Lighthouse\Validation\ValidationServiceProvider::class);
  */
 // $app->register(Nuwave\Lighthouse\Pagination\PaginationServiceProvider::class);
 $app->register(MLL\GraphQLPlayground\GraphQLPlaygroundServiceProvider::class);
-
+$app->register(Nuwave\Lighthouse\Subscriptions\SubscriptionServiceProvider::class);
 if (is_local() || in_environment('staging')) {
     $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 }
