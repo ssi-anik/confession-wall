@@ -381,3 +381,33 @@ query ($name: String!, $text: String) {
   "text": "Another text"
 }
 ```
+
+---
+
+### Fragment
+```graphql endpoint doc
+query($name: String!, $text: String) {
+  fragment1: internalArgument(name: $name) {
+    ...fragmentName
+  }
+
+  fragment2: internalArgument(name: $name) {
+    ...fragmentName
+  }
+
+  inlineFragment: internalArgument(name: $name) {
+    ... on CustomType {
+      id
+      name
+      internal_argument
+    }
+  }
+}
+
+fragment fragmentName on CustomType {
+  id
+  name
+  internal_argument(text: $text)
+}
+
+```
