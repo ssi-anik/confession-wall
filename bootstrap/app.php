@@ -54,6 +54,12 @@ $app->register(Nuwave\Lighthouse\Validation\ValidationServiceProvider::class);
 // $app->register(Nuwave\Lighthouse\Pagination\PaginationServiceProvider::class);
 $app->register(MLL\GraphQLPlayground\GraphQLPlaygroundServiceProvider::class);
 $app->register(Nuwave\Lighthouse\Subscriptions\SubscriptionServiceProvider::class);
+
+/**
+ * Uncomment the following line if you want to print the schema.
+ * `php artisan lighthouse:print-schema`
+ */
+// $app->singleton(\Illuminate\Cache\Repository::class, \Illuminate\Contracts\Cache\Repository::class);
 if (is_local() || in_environment('staging')) {
     $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 }
