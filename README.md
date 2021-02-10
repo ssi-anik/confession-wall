@@ -1,24 +1,29 @@
-# Lumen PHP Framework
+# Confession wall
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://img.shields.io/packagist/v/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://img.shields.io/packagist/l/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
+An implementation of APIs and GraphQL with Lumen for anonymous confession. Not a serious project. Check the articles if you're here to implement the GraphQL with Laravel/Lumen.
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+## Lumen Version
+This repository contains Lumen `8.x` and Lighthouse `5.2.x`
 
-## Official Documentation
+## Dependencies, requirements and build tools
+This project comes with `docker` & `docker-compose`. But to minimize the boot up time when you try `docker-compose up -d --build` the local files are mounted to application & worker containers and **NOT COPIED TO CONTAINERS**.
+Thus, it's recommended to use PHP & composer locally. Resolve your project dependency before you run your application using `composer install`.
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+This project contains,
+- `nginx` for web server.
+- `postgres` for database.
+- `redis` for cache.
+- `beanstalkd` for queue driver.
+- `beanstalk-console` as beanstalk's admin tool.
 
-## Contributing
-
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## How to use?
+- Clone the repository.
+- `cp docker-compose.yml.example docker-compose.yml`.
+- Make the required changes to your `docker-compose.yml`.
+- `cp .env.example .env`.
+- Make the required changes to your `.env`.
+- `docker-compose up -d --build` to build your containers.
+- Run `php artisan key:generate` to generate application key.
+- Loading `http://127.0.0.1:{NGINX_PORT}` in your browser will return a json response.
+- If you don't have `composer` locally, then `exec`-ing to php container after containers are up and install the dependencies will work. Just restart the containers.
+- If you're changing the environment variables, make sure to change them other places and run commands if required.
