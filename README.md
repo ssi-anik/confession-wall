@@ -2,7 +2,7 @@
 
 An implementation of APIs and GraphQL with Lumen for anonymous confession. Not a serious project. Check the articles if you're here to implement the GraphQL with Laravel/Lumen.
 
-## Lumen Version
+## Version
 This repository contains Lumen `8.x` and Lighthouse `5.2.x`
 
 ## Dependencies, requirements and build tools
