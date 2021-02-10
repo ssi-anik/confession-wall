@@ -27,3 +27,10 @@ This project contains,
 - Loading `http://127.0.0.1:{NGINX_PORT}` in your browser will return a json response.
 - If you don't have `composer` locally, then `exec`-ing to php container after containers are up and install the dependencies will work. Just restart the containers.
 - If you're changing the environment variables, make sure to change them other places and run commands if required.
+- Run `docker-compose exec php php artisan migrate --seed` to migrate and seed the database. Check the seeded username and password.
+
+## Postman Collection
+[Postman collection](https://www.getpostman.com/collections/85c1be3c2301faa36c81) for the APIs. Please change the environment variables.
+
+## Queries
+GraphQL queries are listed in the `queries.md` file.
