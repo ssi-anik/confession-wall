@@ -24,8 +24,8 @@ services:
     
     worker:
         build:
-            context: ./docker/php
-            dockerfile: worker.dockerfile
+            context: .
+            dockerfile: ./docker/php/worker.dockerfile
         volumes:
             - .:/var/www/html
         links:
